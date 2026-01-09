@@ -1,61 +1,71 @@
-# 🚀 Getting started with Strapi
+# Webdev Strapi Backend
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+This is the Strapi backend for the Webdev website.It provides the API for managing projects and blog posts displayed on the frontend.
 
-### `develop`
+You can find the frontend React website [here](https://github.com/juhbence90/webdev-site-project-frontend).
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+![App Screenshot](./public/screen.png)
 
+## ✨ Features
+
+- REST API for Projects and Blog Posts
+- Rich media upload support (via Strapi Media Library)
+- Custom fields including image, tags, description, etc.
+- Role-based admin panel
+- Easily deployable to services like Render, Railway, or DigitalOcean
+
+## 📦 Setup Instructions
+
+Clone the repository and install dependencies:
+
+## Setup & Usage
+
+# 1. Clone the Repo
+```bash
+git clone https://github.com/juhbence90/webdev-site-project-backend.git
+cd webdev-project-backend
 ```
+
+# 2. Install dependencies
+
+```bash
+npm install
+```
+
+# 3. Configure Environment
+Copy the example env file:
+
+```bash
+cp .env.example .env
+```
+Then update .env with your database connection and other required settings. Use a Neon PostgreSQL database. So you need to create an account at neon.com and then add your own database string.
+
+# 4. Start the Server
+
+```bash
 npm run develop
-# or
-yarn develop
+```
+This will launch Strapi in development mode at:
+```bash
+http://localhost:1337/admin
 ```
 
-### `start`
+# 5. API Endpoints
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+Example public endpoints:
+- /api/posts
+- /api/projects
 
-```
-npm run start
-# or
-yarn start
-```
+You can use query parameters for:
+- Sorting: ?sort=date:desc
+- Filtering: ?filters[category][$eq]=design
+- Pagination: ?pagination[limit]=5
+- Population: ?populate=image
 
-### `build`
+Permissions
+Make sure to allow public access to the required content types:
+- Go to Settings > Roles > Public
+- Enable find and findOne for post and project
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
-```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
-
-```
-yarn strapi deploy
-```
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
-
-## ✨ Community
-
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
-
----
-
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Media Uploads
+By default, media is stored locally under /public/uploads.
